@@ -52,14 +52,24 @@ function displaySearch(data) {
 // - AC4: on a bad status or network failure, fail safely with a
 //   message instead of crashing or showing a stack trace.
 // --------------------------------------------------------
+
+// Tracks the most recently initiated query so stale responses can be dropped.
+// AC6 requirement: if a newer search has started, older results must not render.
+let latestQuery = '';
+
 async function search() {
     const query = searchInput.value.trim();
     if (!query) return; // AC9
 
+    latestQuery = query; // stamp this as the current in-flight query
     console.log(`Debug>query: ${query}`); // for testing/screenshots
 
     try {
         const response = await fetch(`${BASE_URL}/uscities-search/${encodeURIComponent(query)}`);
+
+        // AC6: a newer search was started while this one was in flight — discard silently
+        if (query !== latestQuery) return;
+
         if (!response.ok) {
             throw new Error(`Unexpected status ${response.status}`); // AC4
         }
@@ -69,6 +79,8 @@ async function search() {
         }
         displaySearch(data);
     } catch (err) {
+        // AC6: don't show a stale error from an older request either
+        if (query !== latestQuery) return;
         console.log(`Debug>search error: ${err.message}`);
         responsesElm.textContent = 'Error: could not load results.'; // AC4
     }
