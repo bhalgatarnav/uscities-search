@@ -2,14 +2,30 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>USCities Search — EECE/CS 3093C Lab 4</title>
+
+    <!-- DOMPurify: sanitizes any text before we put it into the DOM as HTML -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.4.11/purify.min.js"
+        integrity="sha512-vBe+8DnrK9HGgW5O2AOqY/sJxCkEXEilaOolPs6lx/dxgn9K7dJIsHCOYAJL9ZaqImJbeV9MQsLLaSToUWSCXQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
-
     <h1>USCities Search — EECE/CS 3093C Lab 4</h1>
     <h3>By Arnav Bhalgat</h3>
 
+    <!-- Search bar: one input, one button (per lab spec) -->
+    <input id="search-input" type="text" autocomplete="off" placeholder="Type a ZIP code or city name" />
+    <button id="search-button">Search</button>
+
+    <!-- Results get injected here by client.js -->
+    <div id="responses"></div>
+
+    <script src="client.js"></script>
 </body>
 
 </html>

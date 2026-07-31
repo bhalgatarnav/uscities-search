@@ -1,0 +1,38 @@
+/* Basic styling — Arnav Bhalgat, Lab 4 Task 2 */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 0 16px;
+}
+
+#search-input {
+    width: 400px;
+    padding: 8px;
+    font-size: 16px;
+}
+
+#search-button {
+    padding: 8px 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 12px;
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
