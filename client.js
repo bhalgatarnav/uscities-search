@@ -73,7 +73,10 @@ async function search() {
         if (!response.ok) {
             throw new Error(`Unexpected status ${response.status}`); // AC4
         }
-        const data = await response.json();
+        const rawText = await response.text();
+        console.log('Debug>raw response:', rawText); // TEMP: lets us see exact shape
+        const data = JSON.parse(rawText);
+        console.log('Debug>parsed type:', Array.isArray(data) ? 'array' : typeof data, data);
         if (!Array.isArray(data)) {
             throw new Error('Malformed response'); // AC4/AC10: validate shape before display
         }
